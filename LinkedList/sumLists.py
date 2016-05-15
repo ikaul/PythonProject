@@ -1,4 +1,19 @@
 #!/usr/bin/python
+import unittest
+
+class TestLinkedListAddition(unittest.TestCase):
+	def setUp(self):
+		list1 = [1,6,7,0,0,1]
+		list2 = [0,0,0,0,0,1]
+		self.l1 = LinkedList()
+		self.l2 = LinkedList()
+		for i in list1:
+			self.l1.insert(i)
+		for i in list2:
+			self.l2.insert(i)
+	def testSum(self):
+		self.assertEqual(self.l1.sum(self.l2), 167002)
+
 class Node(object):
         def __init__(self, data=None, link=None):
                 self.link = link
@@ -30,15 +45,9 @@ class LinkedList(object):
 			index = index * 10
 			value = value + n.info * index
 		return value
-		
-list1 = [1,6,7,0,0,1]
-list2 = [0,0,0,0,0,1]
-l1 = LinkedList()
-l2 = LinkedList()
-for i in list1:
-        l1.insert(i)
-for i in list2:
-        l2.insert(i)
+	def sum(self, ll):
+		sum = self.value() + ll.value()
+		return sum
 
-print l1.value()
-print l1.sum(l2)
+if __name__ == '__main__':
+    unittest.main()
