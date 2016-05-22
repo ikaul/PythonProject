@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import unittest
 class Graph():
 	def __init__(self):
 		self.graph = dict()
@@ -39,18 +40,24 @@ class Graph():
 						q.append(node)
 		return False	
 
-g = Graph()
-g.addLink('A', 'B')
-print g
-print g.routeBetweenNodes('A', 'D')
-print g.routeBetweenNodes('A', 'A')
-g.addLink('C', 'D')
-print g
-print g.routeBetweenNodes('A', 'D')
-g.addLink('A', 'A')
-g.addLink('B', 'A')
-g.addLink('B', 'C')
-g.addLink('D', 'A')
-print g
-print g.routeBetweenNodes('A', 'D')
-print g.routeBetweenNodes('A', 'A')
+class GraphRouteTests(unittest.TestCase):
+	def setUp(self):
+		self.g = Graph()
+		self.g.addLink('A', 'B')
+		self.g.addNode('C')
+		self.g.addLink('B', 'D')
+	def test_validInput(self):
+		self.assertTrue(self.g.routeBetweenNodes('A', 'D'))
+		self.assertFalse(self.g.routeBetweenNodes('A', 'A'))
+		self.assertFalse(self.g.routeBetweenNodes('A', 'C'))
+	def test_invalidInput(self):
+		self.assertEqual("Start/End node does not exist", self.g.routeBetweenNodes('A', None))
+	def test_boundaryInput(self):
+		self.g.addLink('A', 'A')
+		self.assertTrue(self.g.routeBetweenNodes('A', 'A'))
+		self.g.addLink('D', 'C')
+		self.g.addLink('C', 'A')
+		self.assertTrue(self.g.routeBetweenNodes('D', 'B'))
+		self.assertTrue(self.g.routeBetweenNodes('C', 'B'))
+
+unittest.main()
