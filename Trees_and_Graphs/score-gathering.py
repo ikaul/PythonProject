@@ -48,7 +48,7 @@ class Tree(object):
 			return print_str
 
 
-        def to_string(self, node=self.root):
+        def to_string(self, node):
 		print_str = ""
                 if node is not None:
                         print_str += str(node)
