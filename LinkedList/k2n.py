@@ -24,20 +24,13 @@ class LinkedList(object):
 	def k2end(self,k):
 		p1 = self.head
 		p2 = self.head
-		count = 1 
-		while p2.link != None:
-			count += 1
-			p2 = p2.link
-		p2 = self.head
-		if count < k:
-			return "K is bigger than Linked List"
-		for i in range(count-k):
-			if p2.link != None:
-				p2 = p2.link
-		while p2.link != None:
+		for i in range(k):
+			p1 = p1.link
+
+		while p1 != None:
 			p1 = p1.link
 			p2 = p2.link
-		self.head = p1
+		self.head = p2
 		return str(self) 
 
 l = [10,20,30,40,50,60,70,80,90,100,110]
@@ -53,5 +46,5 @@ for i in l:
 print ll
 
 print l1.k2end(10)
-print l2.k2end(12)
+print l2.k2end(2)
 print l3.k2end(6)
