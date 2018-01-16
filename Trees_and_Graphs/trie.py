@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #Trie Implementation in Python
+import unittest
 class Trie(object):
     # Initialize Trie Data Structure
     def __init__(self):
@@ -53,10 +54,14 @@ class Trie(object):
                 return 0
         return node[self.count]
 
-words = ["Ishan", "Ishani", "IshanKaul", "IshKaul", "Test", "I_Test"]
-trie = Trie()
-for word in words:
-    trie.add(word)
+class Test_Trie(unittest.TestCase):
+    def setUp(self):
+        self.trie = Trie()
+        words = ["Ishan", "Ishani", "IshanKaul", "IshKaul", "Test", "I_Test"]
+        for word in words:
+            self.trie.add(word)
+    def test_word_suggestions(self):
+        self.assertEqual("['Ishani', 'IshanKaul', 'Ishan', 'IshKaul']", str(self.trie.word_suggestions("Ish")))
+        self.assertEqual(3, self.trie.find("Ishan"))
 
-print trie.find("Ishan")
-print trie.word_suggestions("Ish")
+unittest.main()
