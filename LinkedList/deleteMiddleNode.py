@@ -19,7 +19,7 @@ class LinkedList(object):
                 ret = str(n.info)
                 while n.link != None:
                         n = n.link
-                        ret = ret + '->' + str(n.info)
+                        ret = str(n.info) + '->' + ret
                 return ret
 
         def delMiddleNode(self, val):

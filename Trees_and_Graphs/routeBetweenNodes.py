@@ -3,7 +3,7 @@ import unittest
 class Graph():
 	def __init__(self):
 		self.graph = dict()
-	
+
 	def __str__(self):
 		return str(self.graph)
 
@@ -15,13 +15,13 @@ class Graph():
 		self.addNode(node1)
 		self.addNode(node2)
 		self.graph[node1].append(node2)
-	
+
 	def routeBetweenNodes(self, start, end ):
 		if start not in self.graph or end not in self.graph:
 			return "Start/End node does not exist"
 
 		visited = list()
-		q = [start] 
+		q = [start]
 
 		#Check for self loop
 		if start == end:
@@ -38,7 +38,7 @@ class Graph():
 				else:
 					for node in self.graph[n]:
 						q.append(node)
-		return False	
+		return False
 
 class GraphRouteTests(unittest.TestCase):
 	def setUp(self):

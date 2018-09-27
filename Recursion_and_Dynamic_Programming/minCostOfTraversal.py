@@ -1,14 +1,14 @@
 #!/usr/bin/python
 
 class Solution():
-	maxInt = 100000 
+	maxInt = 100000
 	def __init__(self, m, n):
 		self.m = m
 		self.n = n
 		self.memo = list()
 		for i in range(m):
 			self.memo.append([self.maxInt for j in range(n)])
-		
+
 	def findMinCostRecursive(self, cost, m, n):
 		if m == 0:
 			self.memo[m][n] = cost[m][n]
@@ -17,7 +17,7 @@ class Solution():
 			return self.maxInt
 		elif self.memo[m][n] < self.maxInt:
 			return self.memo[m][n]
-		else:	
+		else:
 			self.memo[m][n] = cost[m][n] + min([self.findMinCostRecursive(cost, m-1, n-1), self.findMinCostRecursive(cost, m, n-1), self.findMinCostRecursive(cost, m-1, n)])
 			return self.memo[m][n]
 
